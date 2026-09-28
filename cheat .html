@@ -1,0 +1,163 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Mart</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 30px;
+        }
+
+        .container {
+            width: 400px;
+            margin: auto;
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin-top: 5px;
+        }
+
+        .product {
+            background-color: #eee;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Mini Mart</h1>
+
+        <input type="text" id="productName" placeholder="Enter product name">
+
+        <input type="number" id="productPrice" placeholder="Enter product price">
+
+        <button onclick="addProduct()">Add Product</button>
+
+        <div id="productList"></div>
+    </div>
+
+
+    <script>
+
+        // Get products from Local Storage
+        let products = JSON.parse(localStorage.getItem("products")) || [];
+
+
+        // Function to add a product
+        function addProduct() {
+
+            // Get values from the input fields
+            let productName = document.getElementById("productName").value;
+            let productPrice = document.getElementById("productPrice").value;
+
+            // Check that the fields are not empty
+            if (productName === "" || productPrice === "") {
+                alert("Please enter the product name and price.");
+                return;
+            }
+
+            // Create a product object
+            let product = {
+                name: productName,
+                price: Number(productPrice)
+            };
+
+            // Add the object to the array
+            products.push(product);
+
+            // Save the array in Local Storage
+            localStorage.setItem("products", JSON.stringify(products));
+
+            // Clear the input fields
+            document.getElementById("productName").value = "";
+            document.getElementById("productPrice").value = "";
+
+            // Display the products
+            displayProducts();
+        }
+
+
+        // Function to display products
+        function displayProducts() {
+
+            let productList = document.getElementById("productList");
+
+            // Use map() to display each product
+            productList.innerHTML = products.map(function(product) {
+                return `
+                    <div class="product">
+                        <strong>${product.name}</strong>
+                        <p>Price: ₦${product.price}</p>
+                    </div>
+                `;
+            }).join("");
+        }
+
+
+        // Display saved products when the page loads
+        displayProducts();
+
+    </script>
+
+</body>
+</html>
+```
+
+### How to test your practical
+
+1. Create a folder called **Mini Mart**.
+2. Inside it, create **`index.html`**.
+3. Paste the code above.
+4. Open it with **Live Server**.
+5. Enter a product, e.g.:
+
+   * Rice — ₦5000
+   * Milk — ₦2000
+   * Bread — ₦1500
+6. Click **Add Product** after each one.
+7. Refresh the browser.
+8. The products should still be there because they were saved in **Local Storage**.
+
+### Where each requirement is used
+
+| Requirement      | Where it is used                                     |
+| ---------------- | ---------------------------------------------------- |
+| Array            | `let products = []`                                  |
+| Objects          | `{ name: productName, price: Number(productPrice) }` |
+| Function         | `addProduct()` and `displayProducts()`               |
+| DOM manipulation | `getElementById()` and `innerHTML`                   |
+| `.map()`         | `products.map(...)`                                  |
+| Local Storage    | `localStorage.setItem()` / `getItem()`               |
+| Dynamic products | `products.push(product)`                             |
+| Clear inputs     | `.value = ""`                                        |
+
+This is all contained in **one `index.html` file**, as your submission requires.

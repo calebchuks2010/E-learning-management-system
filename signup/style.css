@@ -1,0 +1,108 @@
+/* *{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: #f8fafc;
+    min-height: 100vh;
+}
+
+.form{
+    text-align: center;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: white;
+    padding: 100px 10px;
+    margin: 100px;
+    margin-left: 400px;
+    margin-right: 400px;
+    border-radius: 20px;
+} */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background: #f5f3ff;
+    min-height: 100vh;
+}
+
+.signup-container {
+    min-height: calc(100vh - 80px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 30px;
+}
+
+.signup-box {
+    background: white;
+    width: 400px;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.signup-box h1 {
+    text-align: center;
+    color: #222;
+    margin-bottom: 10px;
+}
+
+.signup-box > p {
+    text-align: center;
+    color: #777;
+    margin-bottom: 30px;
+}
+
+form label {
+    display: block;
+    margin-bottom: 8px;
+    color: #333;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    outline: none;
+    font-size: 15px;
+}
+
+form input:focus {
+    border-color: #6c3ce9;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 10px;
+    background: #6c3ce9;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #5428c7;
+}
+
+.login-text {
+    margin-top: 25px;
+}
+
+.login-text a {
+    color: #6c3ce9;
+    text-decoration: none;
+    font-weight: bold;
+}

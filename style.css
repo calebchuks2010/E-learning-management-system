@@ -1,0 +1,172 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    background-color: #f8fafc;
+}
+
+.navbar {
+    width: 95%;
+    height: 85px;
+    margin: 20px auto;
+    padding: 0 30px;
+    background-color: white;
+    border-radius: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 5px 20px rgba(37, 99, 235, 0.1);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+}
+
+.logo h2 {
+    font-size: 28px;
+    color: #2563eb;
+}
+
+.links {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.links a {
+    text-decoration: none;
+    color: #1e293b;
+    padding: 14px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+}
+
+.links a:hover {
+    color: #2563eb;
+}
+
+.links .active {
+    color: white;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+
+.links .active:hover {
+    color: black;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+
+.search input {
+    width: 230px;
+    padding: 14px 20px;
+    border: none;
+    outline: none;
+    border-radius: 25px;
+    background-color: #f1f3ff;
+    font-size: 14px;
+}
+
+.buttons {
+    display: flex;
+    gap: 12px;
+}
+
+button {
+    padding: 13px 22px;
+    border-radius: 20px;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.getstarted {
+    background-color: white;
+    color: #2563eb;
+    border: 2px solid #2563eb;
+}
+
+
+
+/* CONTROL SECTION */
+
+.hero {
+    width: 90%;
+    min-height: 500px;
+    margin: 40px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 50px;
+    border-radius: 30px;
+    background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+}
+
+.hero-text {
+    width: 50%;
+}
+
+.hero-text h1 {
+    font-size: 60px;
+    color: #1e293b;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    font-size: 20px;
+    line-height: 1.6;
+    color: #64748b;
+    max-width: 550px;
+    margin-bottom: 30px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.hero-buttons button {
+    padding: 15px 25px;
+    border-radius: 25px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.explore {
+    border: none;
+    color: white;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+}
+
+.get-started {
+    color: #2563eb;
+    background-color: white;
+    border: 2px solid #2563eb;
+}
+
+.get-started:hover {
+    background-color: rgb(245, 242, 242);
+}
+
+.hero-image {
+    width: 60%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+}
+
+.hero-image img {
+    width: 350px;
+    height: 350px;
+    object-fit: contain;
+}
