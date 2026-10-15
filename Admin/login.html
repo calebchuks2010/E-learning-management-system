@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login - Cclass</title>
+    <link rel="stylesheet" href="./login.css">
+</head>
+<body>
+
+    <div class="login-container">
+
+        <div class="login-box">
+
+            <div class="logo">
+                Cclass
+            </div>
+
+            <div class="admin-badge">
+                ADMIN
+            </div>
+
+            <h1>Admin Login</h1>
+
+            <p class="subtitle">
+                Login to manage the Cclass platform.
+            </p>
+
+            <form id="adminLoginForm">
+
+                <label>Admin Username</label>
+
+                <input
+                    type="text"
+                    id="adminUsername"
+                    placeholder="Enter your username"
+                    required
+                >
+
+                <label>Password</label>
+
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Enter your password"
+                    required
+                >
+
+                <button type="submit" href="../Admin/A-dashboard.html">
+                    Login
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        document.getElementById("adminLoginForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let username = document.getElementById("adminUsername").value;
+            let password = document.getElementById("adminPassword").value;
+
+            let savedUsername = localStorage.getItem("adminUsername");
+            let savedPassword = localStorage.getItem("adminPassword");
+
+            if (username === savedUsername && password === savedPassword) {
+
+                localStorage.setItem("adminLoggedIn", "true");
+
+                const dashboardUrl = "./A-dashboard.html";
+                const dashboardTab = window.open(dashboardUrl, "_blank");
+
+                if (dashboardTab) {
+                    dashboardTab.opener = null;
+                } else {
+                    window.location.href = dashboardUrl;
+                }
+
+            } else {
+
+                alert("Incorrect admin username or password");
+
+            }
+            
+
+        });
+
+    </script>
+
+</body>
+</html>

@@ -3,40 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Sign Up</title>
+    <title>Create Student Account - Cclass</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
 
     <div class="signup-container">
+
         <div class="signup-box">
 
-            <img src="./ChatGPT Image Sep 24, 2026, 08_27_45 AM.png" alt="#" style="width: 100%; height: 250px;">
-            
-            <h1>Create Account</h1>
-            <p>Join Cclass today</p>
-            
+            <div class="logo">
+                Cclass
+            </div>
 
-            <form>
-                <label>Full Name</label>
-                <input type="text" placeholder="Enter your name">
+            <h1>Create Account</h1>
+            <p class="subtitle">Create your student account to start learning.</p>
+
+            <form id="signupForm">
+
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
 
                 <label>Email</label>
-                <input type="email" placeholder="Enter your email">
+                <input type="email" id="email" placeholder="Enter your email" required>
 
                 <label>Password</label>
-                <input type="password" placeholder="Create a password">
+                <input type="password" id="password" placeholder="Create a password" required>
+
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
 
                 <button type="submit">Create Account</button>
+
             </form>
 
             <p class="login-text">
                 Already have an account?
-                <a href="#">Log in</a>
+                <a href="../login/login.html">Login</a>
             </p>
 
         </div>
+
     </div>
+
+    <script>
+        // document.getElementById("signupForm").addEventListener("submit", function(event) {
+        //     event.preventDefault();
+
+        //     let username = document.getElementById("username").value;
+        //     let email = document.getElementById("email").value;
+        //     let password = document.getElementById("password").value;
+        //     let confirmPassword = document.getElementById("confirmPassword").value;
+
+        //     if (password !== confirmPassword) {
+        //         alert("Passwords do not match");
+        //         return;
+        //     }
+
+        //     localStorage.setItem("username", username);
+        //     localStorage.setItem("email", email);
+        //     localStorage.setItem("password", password);
+
+        //     alert("Account created successfully!");
+
+        //     window.location.href = "student-login.html";
+        // });
+
+        document.getElementById("signupForm").addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        let username = document.getElementById("username").value;
+        let email = document.getElementById("email").value;
+        let password = document.getElementById("password").value;
+        let confirmPassword = document.getElementById("confirmPassword").value;
+
+        if (password !== confirmPassword) {
+            alert("Passwords do not match");
+            return;
+        }
+
+        let students = JSON.parse(localStorage.getItem("students")) || [];
+
+        let student = {
+            username: username,
+            email: email,
+            password: password
+        };
+
+        students.push(student);
+
+        localStorage.setItem("students", JSON.stringify(students));
+
+        localStorage.setItem("username", username);
+        localStorage.setItem("email", email);
+        localStorage.setItem("password", password);
+
+        alert("Account created successfully!");
+
+        window.location.href = "../login/login.html";
+
+    });
+    </script>
 
 </body>
 </html>

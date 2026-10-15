@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Teacher Account - Cclass</title>
+    <link rel="stylesheet" href="../signup/style.css">
+</head>
+<body>
+
+    <div class="signup-container">
+        <div class="signup-box">
+            <div class="logo">Cclass</div>
+            <h1>Create Teacher Account</h1>
+            <p class="subtitle">Create your account to start teaching with Cclass.</p>
+
+            <form id="teacherSignupForm">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Create a password" required>
+
+                <label for="confirmPassword">Confirm Password</label>
+                <input type="password" id="confirmPassword" placeholder="Confirm your password" required>
+
+                <button type="submit">Create Teacher Account</button>
+            </form>
+
+            <p class="login-text">
+                Already have a teacher account?
+                <a href="./login.html">Login</a>
+            </p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById("teacherSignupForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById("username").value.trim();
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value;
+            const confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            const teachers = JSON.parse(localStorage.getItem("teachers") || "[]");
+
+            if (teachers.some(function(teacher) {
+                return teacher.username.toLowerCase() === username.toLowerCase();
+            })) {
+                alert("That teacher username is already registered");
+                return;
+            }
+
+            teachers.push({ username: username, email: email, password: password });
+            localStorage.setItem("teachers", JSON.stringify(teachers));
+            alert("Teacher account created successfully!");
+            window.location.href = "./login.html";
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,102 @@
+@import url("../student%20dasboard/style.css");
+
+.course-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.course-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(37, 99, 235, 0.12);
+}
+
+.sidebar a:focus-visible,
+.course-content a:focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 3px;
+}
+
+.course-request-form {
+    display: grid;
+    gap: 16px;
+}
+
+.course-request-form > button {
+    justify-self: start;
+    min-height: 46px;
+    padding: 12px 18px;
+    border: 0;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
+    color: white;
+    font: inherit;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.teacher-course-list {
+    display: grid;
+    gap: 14px;
+}
+
+.teacher-course-item {
+    padding: 22px;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    background: white;
+}
+
+.teacher-course-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+}
+
+.teacher-course-heading h3 {
+    overflow-wrap: anywhere;
+}
+
+.course-status {
+    padding: 6px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.course-status-pending {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.course-status-approved {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.course-status-rejected {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.teacher-course-detail {
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.teacher-course-description {
+    margin-top: 14px;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+@media (max-width: 650px) {
+    .course-request-form > button {
+        width: 100%;
+    }
+
+    .teacher-course-heading {
+        flex-direction: column;
+    }
+}

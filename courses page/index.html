@@ -12,41 +12,51 @@
     <nav class="navbar">
 
         <div class="logo">
-            <img src="logo.png" alt="Cclass logo">
+            <img src="../ChatGPT Image Sep 24, 2026, 08_27_45 AM.png" alt="Cclass logo">
             <h2>Cclass</h2>
         </div>
 
-        <div class="links">
+        <div class="links" id="primaryNavLinks">
             <a href="../index.html">Home</a>
-            <a href="courses.html" class="active">Courses</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="../About/index.html">About</a>
+            <a href="./index.html" class="active">Courses</a>
+            <a href="../Contact/index.html">Contact</a>
         </div>
 
-        <div class="search">
+        <!-- <div class="search">
             <input type="text" placeholder="Search courses...">
-        </div>
+        </div> -->
 
         <div class="buttons">
-            <button class="login">Login</button>
-            <button class="signup">Sign Up</button>
+            <a class="getstarted" href="../choose/index.html">Get Started</a>
         </div>
+
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNavLinks" title="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
     </nav>
 
-
     <section class="courses-hero">
+        <div class="courses-hero-content">
+            <div class="hero-copy">
+                <p class="hero-kicker">FIND YOUR NEXT SKILL</p>
+                <h1>Explore our <span>courses.</span></h1>
+                <p>Learn new skills and build your future with Cclass.</p>
+            </div>
 
-        <h1>Explore Our Courses</h1>
-
-        <p>
-            Learn new skills and build your future with Cclass.
-        </p>
-
-        <div class="course-search">
-            <input type="text" placeholder="🔍 Search for courses...">
+            <form class="course-search" id="courseSearchForm" role="search">
+                <label for="courseSearch">Find a course</label>
+                <div class="search-field">
+                    <span aria-hidden="true">⌕</span>
+                    <input id="courseSearch" type="search" placeholder="Search courses...">
+                    <button type="submit" class="course-search-button">Search</button>
+                </div>
+                <p class="search-status" id="searchStatus" aria-live="polite">Search by course title, topic, or description.</p>
+            </form>
         </div>
-
     </section>
 
 
@@ -69,7 +79,7 @@
         </div>
 
 
-        <div class="course-container">
+        <div class="course-container" id="courseContainer">
 
 
             <div class="course-card">
@@ -94,9 +104,9 @@
                         <span>12 Lessons</span>
                     </div>
 
-                    <button class="view-course">
+                    <a class="view-course" href="./index.html">
                         View Course →
-                    </button>
+                    </a>
 
                 </div>
 
@@ -125,9 +135,9 @@
                         <span>18 Lessons</span>
                     </div>
 
-                    <button class="view-course">
+                    <a class="view-course" href="./index.html">
                         View Course →
-                    </button>
+                    </a>
 
                 </div>
 
@@ -156,9 +166,9 @@
                         <span>15 Lessons</span>
                     </div>
 
-                    <button class="view-course">
+                    <a class="view-course" href="./index.html">
                         View Course →
-                    </button>
+                    </a>
 
                 </div>
 
@@ -187,9 +197,9 @@
                         <span>20 Lessons</span>
                     </div>
 
-                    <button class="view-course">
+                    <a class="view-course" href="./index.html">
                         View Course →
-                    </button>
+                    </a>
 
                 </div>
 
@@ -218,9 +228,9 @@
                         <span>14 Lessons</span>
                     </div>
 
-                    <button class="view-course">
+                    <a class="view-course" href="./index.html">
                         View Course →
-                    </button>
+                    </a>
 
                 </div>
 
@@ -249,9 +259,9 @@
                         <span>16 Lessons</span>
                     </div>
 
-                    <button class="view-course">
+                    <a class="view-course" href="./index.html">
                         View Course →
-                    </button>
+                    </a>
 
                 </div>
 
@@ -280,7 +290,7 @@
                 <h3>Platform</h3>
 
                 <a href="index.html">Home</a>
-                <a href="courses.html">Courses</a>
+                <a href="./index.html">Courses</a>
                 <a href="#">About</a>
                 <a href="#">Contact</a>
             </div>
@@ -320,6 +330,110 @@
         </div>
 
     </footer>
+
+    <script>
+        const courseSearchForm = document.getElementById("courseSearchForm");
+        const courseSearchInput = document.getElementById("courseSearch");
+        const searchStatus = document.getElementById("searchStatus");
+        const courseContainer = document.getElementById("courseContainer");
+
+        function renderApprovedTeacherCourses() {
+            let requests = [];
+
+            try {
+                const savedRequests = JSON.parse(localStorage.getItem("courseRequests") || "[]");
+                requests = Array.isArray(savedRequests) ? savedRequests : [];
+            } catch (error) {
+                requests = [];
+            }
+
+            courseContainer.querySelectorAll("[data-teacher-course]").forEach(function(card) {
+                card.remove();
+            });
+
+            requests.filter(function(request) {
+                return request.status === "approved";
+            }).forEach(function(request) {
+                const card = document.createElement("article");
+                card.className = "course-card teacher-added-course";
+                card.dataset.teacherCourse = request.id;
+
+                const image = document.createElement("div");
+                image.className = "course-image teacher-course-image";
+                const categoryTitle = document.createElement("span");
+                categoryTitle.textContent = request.category;
+                image.appendChild(categoryTitle);
+
+                const content = document.createElement("div");
+                content.className = "course-content";
+
+                const category = document.createElement("span");
+                category.className = "category-name";
+                category.textContent = request.category;
+
+                const title = document.createElement("h3");
+                title.textContent = request.title;
+
+                const description = document.createElement("p");
+                description.textContent = request.description;
+
+                const info = document.createElement("div");
+                info.className = "course-info";
+
+                const teacher = document.createElement("span");
+                teacher.className = "course-teacher";
+                teacher.textContent = `By ${request.teacherUsername}`;
+
+                const lessons = document.createElement("span");
+                lessons.textContent = `${request.lessons} Lessons`;
+
+                info.append(teacher, lessons);
+                content.append(category, title, description, info);
+                card.append(image, content);
+                courseContainer.appendChild(card);
+            });
+        }
+
+        renderApprovedTeacherCourses();
+
+        function filterCourses() {
+            const query = courseSearchInput.value.trim().toLowerCase();
+            const courseCards = Array.from(document.querySelectorAll(".courses-section .course-card"));
+            let visibleCount = 0;
+
+            courseCards.forEach(function(card) {
+                const matches = card.textContent.toLowerCase().includes(query);
+                card.hidden = !matches;
+
+                if (matches) {
+                    visibleCount += 1;
+                }
+            });
+
+            if (!query) {
+                searchStatus.textContent = `Showing all ${courseCards.length} courses.`;
+            } else if (visibleCount === 0) {
+                searchStatus.textContent = `No courses found for "${query}". Try another search.`;
+            } else {
+                searchStatus.textContent = `${visibleCount} ${visibleCount === 1 ? "course" : "courses"} found.`;
+            }
+        }
+
+        courseSearchForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+            filterCourses();
+        });
+
+        courseSearchInput.addEventListener("input", filterCourses);
+
+        window.addEventListener("storage", function(event) {
+            if (event.key === "courseRequests") {
+                renderApprovedTeacherCourses();
+                filterCourses();
+            }
+        });
+    </script>
+    <script src="../script.js"></script>
 
 </body>
 </html>

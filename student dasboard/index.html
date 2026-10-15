@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - Cclass</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Cclass
+        </div>
+
+        <div class="nav-right">
+            <div class="notification-center">
+                <button class="notification-toggle" id="notificationToggle" type="button" aria-label="Open notifications" aria-expanded="false" aria-controls="notificationPanel">
+                    <span aria-hidden="true">🔔</span>
+                    <span class="notification-badge" id="notificationBadge" hidden></span>
+                </button>
+
+                <section class="notification-panel" id="notificationPanel" aria-label="Notifications" hidden>
+                    <div class="notification-panel-heading">
+                        <div>
+                            <h2>Notifications</h2>
+                            <p>Messages and course updates</p>
+                        </div>
+                        <button class="mark-notifications-read" id="markNotificationsRead" type="button">Mark all read</button>
+                    </div>
+                    <div class="notification-items" id="notificationItems" aria-live="polite"></div>
+                </section>
+            </div>
+
+            <div class="profile">
+                <div class="profile-circle" id="profileLetter"></div>
+                <span id="profileUsername"></span>
+            </div>
+
+            <button class="dashboard-menu-toggle" type="button" aria-label="Open dashboard navigation" aria-expanded="false" aria-controls="studentSidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+
+    </header>
+
+
+    <div class="dashboard">
+
+        <aside class="sidebar" id="studentSidebar">
+
+            <nav>
+
+                <a href="#dashboard" class="active">
+                    Dashboard
+                </a>
+
+                <a href="#my-courses">
+                    My Courses
+                </a>
+
+                <a href="../courses%20page/index.html">
+                    Explore Courses
+                </a>
+
+                <a href="#my-progress">
+                    My Progress
+                </a>
+
+                <a href="#certificates">
+                    Certificates
+                </a>
+
+                <a href="#account-settings">
+                    Settings
+                </a>
+
+                <a href="#teacher-messages">
+                    Messages
+                </a>
+
+                <a href="#logout" id="logout">
+                    Logout
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <main class="main-content" id="dashboard">
+
+            <section class="welcome">
+
+                <div>
+                    <p class="small-text">STUDENT DASHBOARD</p>
+
+                    <h1>
+                        Good day,
+                        <span id="username"></span> 👋
+                    </h1>
+
+                    <p>
+                        Welcome back! Continue your learning journey today.
+                    </p>
+                </div>
+
+            </section>
+
+
+            <section class="stats" id="my-progress">
+
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div>
+                        <h2>0</h2>
+                        <p>Enrolled Courses</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div>
+                        <h2>0%</h2>
+                        <p>Learning Progress</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">✅</div>
+                    <div>
+                        <h2>0</h2>
+                        <p>Completed</p>
+                    </div>
+                </div>
+
+                <div class="stat-card">
+                    <div class="stat-icon">🏆</div>
+                    <div>
+                        <h2>0</h2>
+                        <p>Certificates</p>
+                    </div>
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section" id="my-courses">
+
+                <div class="section-heading">
+                    <div>
+                        <h2>Continue Learning</h2>
+                        <p>Pick up where you left off.</p>
+                    </div>
+
+                    <a href="../courses%20page/index.html">Explore Courses</a>
+                </div>
+
+
+                <div class="empty-course">
+
+                    <div class="empty-icon">
+                        📚
+                    </div>
+
+                    <h2>No courses yet</h2>
+
+                    <p>
+                        You haven't enrolled in any courses yet.
+                        Explore our courses and start learning.
+                    </p>
+
+                    <a href="../courses%20page/index.html">
+                        Explore Courses
+                    </a>
+
+                </div>
+
+            </section>
+
+            <section class="dashboard-section" id="teacher-messages">
+                <div class="section-heading">
+                    <div>
+                        <h2>Teacher Messages</h2>
+                        <p>Choose a teacher to read messages or send a reply.</p>
+                    </div>
+                </div>
+
+                <div class="message-panel">
+                    <div class="message-field message-teacher-select">
+                        <label for="teacherSelect">Teacher</label>
+                        <select id="teacherSelect" required></select>
+                    </div>
+
+                    <div class="message-list" id="studentMessages" aria-live="polite"></div>
+
+                    <form class="message-compose" id="studentMessageForm">
+                        <div class="message-field">
+                            <label for="studentMessageInput">Reply</label>
+                            <textarea id="studentMessageInput" maxlength="1000" rows="3" placeholder="Write a reply..." required></textarea>
+                        </div>
+                        <button type="submit">Send Reply</button>
+                    </form>
+                    <p class="message-status" id="studentMessageStatus" role="status" aria-live="polite"></p>
+                </div>
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Recommended Courses</h2>
+                        <p>Courses you may be interested in.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="course-grid">
+
+                    <div class="course-card">
+
+                        <div class="course-image programming">
+                            HTML & CSS
+                        </div>
+
+                        <div class="course-content">
+
+                            <span>Programming</span>
+
+                            <h3>HTML & CSS</h3>
+
+                            <p>
+                                Learn how to build beautiful websites from scratch.
+                            </p>
+
+                            <a href="../courses%20page/index.html">
+                                View Course
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="course-card">
+
+                        <div class="course-image javascript">
+                            JavaScript
+                        </div>
+
+                        <div class="course-content">
+
+                            <span>Programming</span>
+
+                            <h3>JavaScript for Beginners</h3>
+
+                            <p>
+                                Learn the basics of JavaScript and make websites interactive.
+                            </p>
+
+                            <a href="../courses%20page/index.html">
+                                View Course
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="course-card">
+
+                        <div class="course-image design">
+                            UI/UX
+                        </div>
+
+                        <div class="course-content">
+
+                            <span>Design</span>
+
+                            <h3>UI/UX Design</h3>
+
+                            <p>
+                                Learn how to design simple and beautiful digital experiences.
+                            </p>
+
+                            <a href="../courses%20page/index.html">
+                                View Course
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+            <section class="dashboard-section" id="certificates">
+                <div class="section-heading">
+                    <div>
+                        <h2>Certificates</h2>
+                        <p>Certificates for completed courses will appear here.</p>
+                    </div>
+                </div>
+                <div class="empty-course">
+                    <div class="empty-icon">🏆</div>
+                    <h2>No certificates yet</h2>
+                    <p>Complete a course to start building your certificate collection.</p>
+                    <a href="../courses%20page/index.html">Explore Courses</a>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="account-settings">
+                <div class="section-heading">
+                    <div>
+                        <h2>Account Settings</h2>
+                        <p>Your current student account.</p>
+                    </div>
+                </div>
+                <div class="empty-course account-summary">
+                    <p>Signed in as <strong id="accountUsername"></strong></p>
+                    <a href="../Contact/index.html">Contact Support</a>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+    <dialog class="logout-dialog" id="logoutDialog" aria-labelledby="logoutTitle" aria-describedby="logoutDescription">
+        <div class="logout-dialog-icon" aria-hidden="true">↗</div>
+        <h2 id="logoutTitle">Log out?</h2>
+        <p id="logoutDescription">Are you sure you want to log out of your account?</p>
+        <div class="logout-dialog-actions">
+            <button type="button" class="logout-cancel" id="cancelLogout">Stay signed in</button>
+            <button type="button" class="logout-confirm" id="confirmLogout">Log Out</button>
+        </div>
+    </dialog>
+
+
+    <script>
+        const loggedIn = localStorage.getItem("loggedIn");
+        const username = localStorage.getItem("username");
+
+        if (loggedIn !== "true" || !username) {
+            window.location.href = "../login/login.html";
+        } else {
+            document.getElementById("username").textContent = username;
+            document.getElementById("profileUsername").textContent = username;
+            document.getElementById("profileLetter").textContent = username.charAt(0).toUpperCase();
+            document.getElementById("accountUsername").textContent = username;
+
+            function readStoredArray(key) {
+                try {
+                    const value = JSON.parse(localStorage.getItem(key) || "[]");
+                    return Array.isArray(value) ? value : [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function addDashboardNotification(notification) {
+                const notifications = readStoredArray("dashboardNotifications");
+                notifications.push({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                    createdAt: new Date().toISOString(),
+                    read: false,
+                    ...notification
+                });
+                localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+            }
+
+            const teacherSelect = document.getElementById("teacherSelect");
+            const studentMessages = document.getElementById("studentMessages");
+            const studentMessageForm = document.getElementById("studentMessageForm");
+            const studentMessageInput = document.getElementById("studentMessageInput");
+            const studentMessageStatus = document.getElementById("studentMessageStatus");
+            const notificationToggle = document.getElementById("notificationToggle");
+            const notificationPanel = document.getElementById("notificationPanel");
+            const notificationBadge = document.getElementById("notificationBadge");
+            const notificationItems = document.getElementById("notificationItems");
+            const teachers = readStoredArray("teachers").filter(function(teacher) {
+                return teacher && teacher.username;
+            });
+
+            const placeholderOption = document.createElement("option");
+            placeholderOption.value = "";
+            placeholderOption.textContent = teachers.length ? "Choose a teacher" : "No teacher accounts yet";
+            teacherSelect.appendChild(placeholderOption);
+
+            teachers.forEach(function(teacher) {
+                const option = document.createElement("option");
+                option.value = teacher.username;
+                option.textContent = teacher.username;
+                teacherSelect.appendChild(option);
+            });
+
+            const existingStudentMessages = readStoredArray("dashboardMessages").filter(function(message) {
+                return message.studentUsername === username;
+            });
+            const latestTeacherMessage = existingStudentMessages.slice().reverse().find(function(message) {
+                return message.senderRole === "teacher";
+            });
+            const initialTeacher = latestTeacherMessage ? latestTeacherMessage.teacherUsername : (teachers[0] && teachers[0].username);
+
+            if (initialTeacher) {
+                teacherSelect.value = initialTeacher;
+            }
+
+            function renderStudentMessages() {
+                const messages = readStoredArray("dashboardMessages").filter(function(message) {
+                    return message.studentUsername === username && message.teacherUsername === teacherSelect.value;
+                });
+
+                studentMessages.replaceChildren();
+
+                if (!teacherSelect.value) {
+                    const emptyState = document.createElement("p");
+                    emptyState.className = "message-empty";
+                    emptyState.textContent = "Create a teacher account to start a conversation.";
+                    studentMessages.appendChild(emptyState);
+                    return;
+                }
+
+                if (messages.length === 0) {
+                    const emptyState = document.createElement("p");
+                    emptyState.className = "message-empty";
+                    emptyState.textContent = "No messages in this conversation yet.";
+                    studentMessages.appendChild(emptyState);
+                    return;
+                }
+
+                messages.forEach(function(message) {
+                    const bubble = document.createElement("article");
+                    bubble.className = message.senderRole === "student" ? "message-bubble message-sent" : "message-bubble";
+
+                    const meta = document.createElement("p");
+                    meta.className = "message-meta";
+                    meta.textContent = `${message.senderUsername} · ${new Date(message.createdAt).toLocaleString()}`;
+
+                    const content = document.createElement("p");
+                    content.className = "message-content";
+                    content.textContent = message.content;
+
+                    bubble.append(meta, content);
+                    studentMessages.appendChild(bubble);
+                });
+
+                studentMessages.scrollTop = studentMessages.scrollHeight;
+            }
+
+            function getStudentNotifications() {
+                return readStoredArray("dashboardNotifications").filter(function(notification) {
+                    return notification.recipientRole === "student" && notification.recipientUsername === username;
+                });
+            }
+
+            function renderNotifications() {
+                const notifications = getStudentNotifications().sort(function(first, second) {
+                    return new Date(second.createdAt) - new Date(first.createdAt);
+                });
+                const unreadCount = notifications.filter(function(notification) {
+                    return !notification.read;
+                }).length;
+
+                notificationBadge.hidden = unreadCount === 0;
+                notificationBadge.textContent = unreadCount > 9 ? "9+" : String(unreadCount);
+                notificationToggle.setAttribute("aria-label", unreadCount ? `Open notifications, ${unreadCount} unread` : "Open notifications");
+                notificationItems.replaceChildren();
+
+                if (notifications.length === 0) {
+                    const emptyState = document.createElement("p");
+                    emptyState.className = "notification-empty";
+                    emptyState.textContent = "You’re all caught up. New messages and updates will appear here.";
+                    notificationItems.appendChild(emptyState);
+                    return;
+                }
+
+                notifications.forEach(function(notification) {
+                    const item = document.createElement("button");
+                    item.type = "button";
+                    item.className = notification.read ? "notification-item" : "notification-item notification-unread";
+                    item.dataset.notificationId = notification.id;
+                    item.dataset.notificationKind = notification.kind;
+                    item.dataset.actorUsername = notification.actorUsername || "";
+
+                    const title = document.createElement("span");
+                    title.className = "notification-title";
+                    title.textContent = notification.title;
+
+                    const body = document.createElement("span");
+                    body.className = "notification-body";
+                    body.textContent = notification.body;
+
+                    const time = document.createElement("time");
+                    time.className = "notification-time";
+                    time.dateTime = notification.createdAt;
+                    time.textContent = new Date(notification.createdAt).toLocaleString();
+
+                    item.append(title, body, time);
+                    notificationItems.appendChild(item);
+                });
+            }
+
+            notificationToggle.addEventListener("click", function() {
+                const isOpen = notificationToggle.getAttribute("aria-expanded") === "true";
+                notificationToggle.setAttribute("aria-expanded", String(!isOpen));
+                notificationPanel.hidden = isOpen;
+            });
+
+            document.getElementById("markNotificationsRead").addEventListener("click", function() {
+                const notifications = readStoredArray("dashboardNotifications").map(function(notification) {
+                    if (notification.recipientRole === "student" && notification.recipientUsername === username) {
+                        return { ...notification, read: true };
+                    }
+                    return notification;
+                });
+
+                localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+                renderNotifications();
+            });
+
+            notificationItems.addEventListener("click", function(event) {
+                const item = event.target.closest(".notification-item");
+
+                if (!item) {
+                    return;
+                }
+
+                const notifications = readStoredArray("dashboardNotifications").map(function(notification) {
+                    return notification.id === item.dataset.notificationId ? { ...notification, read: true } : notification;
+                });
+
+                localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+                renderNotifications();
+                notificationPanel.hidden = true;
+                notificationToggle.setAttribute("aria-expanded", "false");
+
+                if (item.dataset.notificationKind === "message" && item.dataset.actorUsername) {
+                    teacherSelect.value = item.dataset.actorUsername;
+                    renderStudentMessages();
+                    document.getElementById("teacher-messages").scrollIntoView({ behavior: "smooth" });
+                }
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!event.target.closest(".notification-center")) {
+                    notificationPanel.hidden = true;
+                    notificationToggle.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            teacherSelect.addEventListener("change", renderStudentMessages);
+
+            studentMessageForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                if (!teacherSelect.value) {
+                    studentMessageStatus.textContent = "Choose a teacher before sending a reply.";
+                    return;
+                }
+
+                const content = studentMessageInput.value.trim();
+
+                if (!content) {
+                    return;
+                }
+
+                const messages = readStoredArray("dashboardMessages");
+                const createdAt = new Date().toISOString();
+                messages.push({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                    teacherUsername: teacherSelect.value,
+                    studentUsername: username,
+                    senderRole: "student",
+                    senderUsername: username,
+                    content: content,
+                    createdAt: createdAt
+                });
+
+                localStorage.setItem("dashboardMessages", JSON.stringify(messages));
+                addDashboardNotification({
+                    recipientRole: "teacher",
+                    recipientUsername: teacherSelect.value,
+                    kind: "message",
+                    actorUsername: username,
+                    title: `New reply from ${username}`,
+                    body: content,
+                    createdAt: createdAt
+                });
+                studentMessageInput.value = "";
+                studentMessageStatus.textContent = "Reply sent.";
+                renderStudentMessages();
+            });
+
+            window.addEventListener("storage", function(event) {
+                if (event.key === "dashboardMessages") {
+                    renderStudentMessages();
+                }
+
+                if (event.key === "dashboardNotifications") {
+                    renderNotifications();
+                }
+            });
+
+            renderStudentMessages();
+            renderNotifications();
+
+            const logoutDialog = document.getElementById("logoutDialog");
+
+            document.getElementById("logout").addEventListener("click", function(event) {
+                event.preventDefault();
+                logoutDialog.showModal();
+            });
+
+            document.getElementById("cancelLogout").addEventListener("click", function() {
+                logoutDialog.close();
+            });
+
+            document.getElementById("confirmLogout").addEventListener("click", function() {
+                localStorage.removeItem("loggedIn");
+                window.location.href = "../login/login.html";
+            });
+        }
+    </script>
+    <script src="../script.js"></script>
+
+</body>
+</html>

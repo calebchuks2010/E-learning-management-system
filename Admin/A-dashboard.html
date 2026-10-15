@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Cclass</title>
+    <link rel="stylesheet" href="./A-dasshboard.css">
+</head>
+
+<body>
+
+    <header class="navbar">
+
+        <div class="logo">
+            Cclass
+        </div>
+
+        <div class="nav-right">
+
+            <span class="notification">
+                🔔
+            </span>
+
+            <div class="profile">
+
+                <div class="profile-circle" id="profileLetter"></div>
+
+                <span id="profileUsername"></span>
+
+            </div>
+
+            <button class="dashboard-menu-toggle" type="button" aria-label="Open dashboard navigation" aria-expanded="false" aria-controls="adminSidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <div class="dashboard">
+
+        <aside class="sidebar" id="adminSidebar">
+
+            <nav>
+
+                <a href="#" class="active">
+                    Dashboard
+                </a>
+
+                <a href="#">
+                    Students
+                </a>
+
+                <a href="#">
+                    Teachers
+                </a>
+
+                <a href="#course-requests">
+                    Courses
+                </a>
+
+                <a href="#">
+                    Enrollments
+                </a>
+
+                <a href="#">
+                    Reports
+                </a>
+
+                <a href="#contact-inbox">
+                    Feedback Inbox
+                </a>
+
+                <a href="#">
+                    Settings
+                </a>
+
+                <a href="#" id="logout">
+                    Logout
+                </a>
+
+            </nav>
+
+        </aside>
+
+
+        <main class="main-content">
+
+            <section class="welcome">
+
+                <p class="small-text">
+                    ADMIN DASHBOARD
+                </p>
+
+                <h1>
+                    Good day,
+                    <span id="username"></span> 
+                </h1>
+
+                <p>
+                    Welcome back! Manage and monitor your Cclass platform from here.
+                </p>
+
+            </section>
+
+
+            <!-- <section class="stats">
+
+                <div class="stat-card">
+
+                    <div class="stat-icon">
+                        👨‍🎓
+                    </div>
+
+                    <div>
+                        <h2>0</h2>
+                        <p>Total Students</p>
+                    </div>
+
+                </div> -->
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🎓
+                </div>
+
+                <div>
+                    <h2 id="studentCount">0</h2>
+                    <p>Total Students</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    👨‍🏫
+                </div>
+
+                <div>
+                    <h2 id="teacherCount">0</h2>
+                    <p>Total Teachers</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📚
+                </div>
+
+                <div>
+                    <h2 id="courseCount">0</h2>
+                    <p>Total Courses</p>
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-icon">
+                    📝
+                </div>
+
+                <div>
+                    <h2>0</h2>
+                    <p>Enrollments</p>
+                </div>
+
+            </div>
+
+            </section>
+
+
+            <section class="dashboard-section" id="contact-inbox">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Feedback Inbox</h2>
+
+                        <p>
+                            Messages sent from the Contact page.
+                        </p>
+                    </div>
+
+                    <span class="inbox-count" id="messageCount">0 messages</span>
+
+                </div>
+
+                <div class="message-list" id="messageList" aria-live="polite"></div>
+
+            </section>
+
+
+            <section class="dashboard-section" id="course-requests">
+                <div class="section-heading">
+                    <div>
+                        <h2>Course Approval Requests</h2>
+                        <p>Review courses teachers want to add to the catalog.</p>
+                    </div>
+                    <span class="inbox-count" id="courseRequestCount">0 pending</span>
+                </div>
+                <div class="course-request-list" id="courseRequestList" aria-live="polite"></div>
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Quick Actions</h2>
+
+                        <p>
+                            Manage important parts of your platform.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="action-grid">
+
+                    <a href="#" class="action-card">
+
+                        <div class="action-icon">
+                            👨‍🎓
+                        </div>
+
+                        <div>
+                            <h3>Manage Students</h3>
+
+                            <p>
+                                View and manage student accounts.
+                            </p>
+                        </div>
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a href="#" class="action-card">
+
+                        <div class="action-icon">
+                            👨‍🏫
+                        </div>
+
+                        <div>
+                            <h3>Manage Teachers</h3>
+
+                            <p>
+                                View and manage teacher accounts.
+                            </p>
+                        </div>
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a href="#" class="action-card">
+
+                        <div class="action-icon">
+                            📚
+                        </div>
+
+                        <div>
+                            <h3>Manage Courses</h3>
+
+                            <p>
+                                Add, edit and manage courses.
+                            </p>
+                        </div>
+
+                        <span>→</span>
+
+                    </a>
+
+
+                    <a href="#" class="action-card">
+
+                        <div class="action-icon">
+                            📊
+                        </div>
+
+                        <div>
+                            <h3>View Reports</h3>
+
+                            <p>
+                                Check platform statistics and reports.
+                            </p>
+                        </div>
+
+                        <span>→</span>
+
+                    </a>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Recent Activity</h2>
+
+                        <p>
+                            Recent activities on Cclass.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="activity-box">
+
+                    <div class="empty-icon">
+                        📋
+                    </div>
+
+                    <h3>No activity yet</h3>
+
+                    <p>
+                        Recent student, teacher and course activities
+                        will appear here.
+                    </p>
+
+                </div>
+
+            </section>
+
+
+            <section class="dashboard-section">
+
+                <div class="section-heading">
+
+                    <div>
+                        <h2>Platform Overview</h2>
+
+                        <p>
+                            Quick overview of your Cclass platform.
+                        </p>
+                    </div>
+
+                </div>
+
+
+                <div class="overview-grid">
+
+                    <div class="overview-card">
+
+                        <h3>Students</h3>
+
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+
+                        <p>
+                            No student data available yet.
+                        </p>
+
+                    </div>
+
+
+                    <div class="overview-card">
+
+                        <h3>Courses</h3>
+
+                        <div class="progress-bar">
+                            <div class="progress"></div>
+                        </div>
+
+                        <p>
+                            No course data available yet.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+    <dialog class="logout-dialog" id="logoutDialog" aria-labelledby="logoutTitle" aria-describedby="logoutDescription">
+        <div class="logout-dialog-icon" aria-hidden="true">↗</div>
+        <h2 id="logoutTitle">Log out?</h2>
+        <p id="logoutDescription">Are you sure you want to log out of your account?</p>
+        <div class="logout-dialog-actions">
+            <button type="button" class="logout-cancel" id="cancelLogout">Stay signed in</button>
+            <button type="button" class="logout-confirm" id="confirmLogout">Log Out</button>
+        </div>
+    </dialog>
+
+    <script>
+
+    let loggedIn = localStorage.getItem("adminLoggedIn");
+
+    let username = localStorage.getItem("adminUsername");
+
+
+    if (loggedIn !== "true" || !username) {
+
+        window.location.href = "login.html";
+
+    }
+
+
+    document.getElementById("username").textContent = username;
+
+    document.getElementById("profileUsername").textContent = username;
+
+    document.getElementById("profileLetter").textContent =
+        username.charAt(0).toUpperCase();
+
+
+    let students = JSON.parse(localStorage.getItem("students")) || [];
+
+    let teachers = JSON.parse(localStorage.getItem("teachers")) || [];
+
+
+    document.getElementById("studentCount").textContent = students.length;
+
+    document.getElementById("teacherCount").textContent = teachers.length;
+
+    const courseRequestList = document.getElementById("courseRequestList");
+    const courseRequestCount = document.getElementById("courseRequestCount");
+
+    function readCourseRequests() {
+        try {
+            const requests = JSON.parse(localStorage.getItem("courseRequests") || "[]");
+            return Array.isArray(requests) ? requests : [];
+        } catch (error) {
+            return [];
+        }
+    }
+
+    function renderCourseRequests() {
+        const requests = readCourseRequests();
+        const pendingRequests = requests.filter(function(request) {
+            return request.status === "pending";
+        });
+
+        courseRequestCount.textContent = `${pendingRequests.length} pending`;
+        document.getElementById("courseCount").textContent = requests.filter(function(request) {
+            return request.status === "approved";
+        }).length;
+        courseRequestList.replaceChildren();
+
+        if (pendingRequests.length === 0) {
+            const emptyState = document.createElement("div");
+            emptyState.className = "inbox-empty";
+            emptyState.textContent = "No course requests are waiting for approval.";
+            courseRequestList.appendChild(emptyState);
+            return;
+        }
+
+        pendingRequests.forEach(function(request) {
+            const card = document.createElement("article");
+            card.className = "message-card course-request-card";
+
+            const heading = document.createElement("div");
+            heading.className = "message-card-header";
+
+            const title = document.createElement("h3");
+            title.textContent = request.title;
+
+            const received = document.createElement("time");
+            received.className = "message-date";
+            received.dateTime = request.requestedAt;
+            received.textContent = new Date(request.requestedAt).toLocaleString();
+            heading.append(title, received);
+
+            const details = document.createElement("p");
+            details.className = "message-sender";
+            details.textContent = `${request.category} · ${request.lessons} lessons · Submitted by ${request.teacherUsername}`;
+
+            const description = document.createElement("p");
+            description.className = "message-body";
+            description.textContent = request.description;
+
+            const actions = document.createElement("div");
+            actions.className = "course-request-actions";
+
+            const approveButton = document.createElement("button");
+            approveButton.className = "approve-course-request";
+            approveButton.type = "button";
+            approveButton.dataset.requestId = request.id;
+            approveButton.dataset.decision = "approved";
+            approveButton.textContent = "Approve";
+
+            const rejectButton = document.createElement("button");
+            rejectButton.className = "reject-course-request";
+            rejectButton.type = "button";
+            rejectButton.dataset.requestId = request.id;
+            rejectButton.dataset.decision = "rejected";
+            rejectButton.textContent = "Reject";
+
+            actions.append(approveButton, rejectButton);
+            card.append(heading, details, description, actions);
+            courseRequestList.appendChild(card);
+        });
+    }
+
+    courseRequestList.addEventListener("click", function(event) {
+        const decisionButton = event.target.closest("button[data-decision]");
+
+        if (!decisionButton) {
+            return;
+        }
+
+        const requests = readCourseRequests();
+        const request = requests.find(function(item) {
+            return item.id === decisionButton.dataset.requestId && item.status === "pending";
+        });
+
+        if (!request) {
+            return;
+        }
+
+        request.status = decisionButton.dataset.decision;
+        request.reviewedAt = new Date().toISOString();
+        localStorage.setItem("courseRequests", JSON.stringify(requests));
+
+        let notifications = [];
+        try {
+            const storedNotifications = JSON.parse(localStorage.getItem("dashboardNotifications") || "[]");
+            notifications = Array.isArray(storedNotifications) ? storedNotifications : [];
+        } catch (error) {
+            notifications = [];
+        }
+
+        const approved = request.status === "approved";
+        notifications.push({
+            id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+            recipientRole: "teacher",
+            recipientUsername: request.teacherUsername,
+            kind: "course-status",
+            actorUsername: username,
+            title: approved ? "Course approved" : "Course not approved",
+            body: approved
+                ? `“${request.title}” is now available in the course catalog.`
+                : `“${request.title}” was not approved for the course catalog.`,
+            createdAt: new Date().toISOString(),
+            read: false
+        });
+        localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+        renderCourseRequests();
+    });
+
+    const messageList = document.getElementById("messageList");
+    const messageCount = document.getElementById("messageCount");
+
+    function renderContactMessages() {
+
+        const messages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
+
+        messageCount.textContent = `${messages.length} ${messages.length === 1 ? "message" : "messages"}`;
+        messageList.replaceChildren();
+
+        if (messages.length === 0) {
+            const emptyState = document.createElement("div");
+            emptyState.className = "inbox-empty";
+            emptyState.textContent = "No feedback messages yet.";
+            messageList.appendChild(emptyState);
+            return;
+        }
+
+        messages.forEach(function(message) {
+            const card = document.createElement("article");
+            card.className = "message-card";
+
+            const header = document.createElement("div");
+            header.className = "message-card-header";
+
+            const subject = document.createElement("h3");
+            subject.textContent = message.subject || "No subject";
+
+            const received = document.createElement("time");
+            received.className = "message-date";
+            received.dateTime = message.createdAt;
+            received.textContent = new Date(message.createdAt).toLocaleString();
+
+            header.append(subject, received);
+
+            const sender = document.createElement("p");
+            sender.className = "message-sender";
+            sender.textContent = `${message.name} · ${message.email}`;
+
+            const body = document.createElement("p");
+            body.className = "message-body";
+            body.textContent = message.message;
+
+            const actions = document.createElement("div");
+            actions.className = "message-actions";
+
+            const deleteButton = document.createElement("button");
+            deleteButton.className = "message-delete";
+            deleteButton.type = "button";
+            deleteButton.dataset.messageId = message.id;
+            deleteButton.setAttribute("aria-label", `Delete message from ${message.name}`);
+            deleteButton.textContent = "Delete";
+
+            actions.appendChild(deleteButton);
+            card.append(header, sender, body, actions);
+            messageList.appendChild(card);
+        });
+    }
+
+    messageList.addEventListener("click", function(event) {
+
+        const deleteButton = event.target.closest(".message-delete");
+
+        if (!deleteButton) {
+            return;
+        }
+
+        const messages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
+        const remainingMessages = messages.filter(function(message) {
+            return String(message.id) !== deleteButton.dataset.messageId;
+        });
+
+        localStorage.setItem("contactMessages", JSON.stringify(remainingMessages));
+        renderContactMessages();
+    });
+
+    window.addEventListener("storage", function(event) {
+        if (event.key === "contactMessages") {
+            renderContactMessages();
+        }
+
+        if (event.key === "courseRequests") {
+            renderCourseRequests();
+        }
+    });
+
+    renderContactMessages();
+    renderCourseRequests();
+
+
+    const logoutDialog = document.getElementById("logoutDialog");
+
+    document.getElementById("logout").addEventListener("click", function(event) {
+        event.preventDefault();
+        logoutDialog.showModal();
+    });
+
+    document.getElementById("cancelLogout").addEventListener("click", function() {
+        logoutDialog.close();
+    });
+
+    document.getElementById("confirmLogout").addEventListener("click", function() {
+        localStorage.removeItem("adminLoggedIn");
+        window.location.href = "login.html";
+    });
+
+</script>
+<script src="../script.js"></script>
+
+</body>
+
+</html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raboni Concept</title>
+    <title>Cclass</title>
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
@@ -14,20 +14,26 @@
             <h2>Cclass</h2>
         </div>
 
-        <div class="links">
+        <div class="links" id="primaryNavLinks">
             <a href="#" class="active">Home</a>
+            <a href="./About/index.html ">About</a>
             <a href="./courses page/index.html" >Courses</a>
-            <a href="#">About</a>
-            <a href="#">Contact</a>
+            <a href="./Contact/index.html">Contact</a>
         </div>
 
-        <div class="search">
+        <!-- <div class="search">
             <input type="text" placeholder="Search for courses...">
-        </div>
+        </div> -->
 
         <div class="buttons">
-            <button class="getstarted"><a href="./login/login.html">Get Started</a></button>
+            <button class="getstarted"><a href="./choose/index.html">Get Started</a></button>
         </div>
+
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNavLinks" title="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
 
     </nav>
 
@@ -38,8 +44,8 @@
             <p>Learn new skills, gain knowledge, and build your future with Cclass.</p>
 
             <div class="hero-buttons">
-                <button class="explore">Explore Courses</button>
-                <button class="get-started">Get Started</button>
+                <a class="explore" href="./courses page/index.html">Explore Courses</a>
+                <a class="get-started" href="./choose/index.html">Get Started</a>
             </div>
         </div>
 
@@ -126,7 +132,7 @@
                     <span>12 Lessons</span>
                 </div>
 
-                <button>Start Course →</button>
+                <a class="course-start" href="./courses page/index.html">Start Course →</a>
             </div>
         </div>
 
@@ -151,7 +157,7 @@
                     <span>18 Lessons</span>
                 </div>
 
-                <button>Start Course →</button>
+                <a class="course-start" href="./courses page/index.html">Start Course →</a>
             </div>
         </div>
 
@@ -176,14 +182,14 @@
                     <span>15 Lessons</span>
                 </div>
 
-                <button>Start Course →</button>
+                <a class="course-start" href="./courses page/index.html">Start Course →</a>
             </div>
         </div>
 
     </div>
 
     <div class="view-courses">
-        <button>View All Courses</button>
+        <a class="view-all-courses" href="./courses page/index.html">View All Courses</a>
     </div>
 
 </section>
@@ -241,9 +247,9 @@
             </div>
         </div>
 
-        <button class="start-learning">
+        <a class="start-learning" href="./courses page/index.html">
             Start Learning →
-        </button>
+        </a>
 
     </div>
 
@@ -342,7 +348,7 @@
             Join Cclass and start building your skills today.
         </p>
 
-        <button>Get Started →</button>
+        <a href="./choose/index.html">Get Started →</a>
 
     </div>
 
@@ -366,9 +372,9 @@
         <div class="footer-column">
             <h3>Platform</h3>
 
-            <a href="#">Home</a>
-            <a href="#">Courses</a>
-            <a href="#">About</a>
+            <a href="./index.html">Home</a>
+            <a href="./courses page/index.html">Courses</a>
+            <a href="./About/index.html">About</a>
             <a href="#">Contact</a>
         </div>
 
@@ -407,6 +413,8 @@
     </div>
 
 </footer>
+
+<script src="./script.js"></script>
 
 </body>
 </html>

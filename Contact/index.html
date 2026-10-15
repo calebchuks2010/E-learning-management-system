@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Cclass</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a class="logo" href="../index.html">
+            <img src="../ChatGPT Image Sep 24, 2026, 08_27_45 AM.png" alt="Cclass logo">
+            <h2>Cclass</h2>
+        </a>
+
+        <div class="links" id="primaryNavLinks">
+            <a href="../index.html">Home</a>
+            <a href="../About/index.html">About</a>
+            <a href="../courses page/index.html">Courses</a>
+            <a href="./index.html" class="active" aria-current="page">Contact</a>
+        </div>
+
+        <a class="get-started" href="../choose/index.html">Get Started</a>
+
+        <button class="nav-toggle" id="navToggle" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="primaryNavLinks" title="Open menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <main>
+        <section class="contact-hero">
+            <p class="eyebrow">WE’RE HERE TO HELP</p>
+            <h1>Let’s talk about <span>your learning.</span></h1>
+            <p>Questions about a course or need a hand getting started? Send us a message.</p>
+        </section>
+
+        <section class="contact-section" aria-label="Contact Cclass">
+            <div class="contact-info">
+                <p class="section-label">CONTACT CCLASS</p>
+                <h2>How can we help?</h2>
+                <p>Share what you need help with and include a few details so we can understand your question.</p>
+
+                <div class="support-note">
+                    <span class="support-icon" aria-hidden="true">✦</span>
+                    <div>
+                        <h3>Student support</h3>
+                        <p>We can help with courses, learning resources, and your Cclass account.</p>
+                    </div>
+                </div>
+
+                <div class="support-note call-note">
+                    <span class="support-icon" aria-hidden="true">☎</span>
+                    <div>
+                        <h3>Prefer to call?</h3>
+                        <a class="phone-link" href="tel:09168784281">0916 878 4281</a>
+                    </div>
+                </div>
+            </div>
+
+            <form class="contact-form" id="contactForm">
+                <div class="form-row">
+                    <div class="form-field">
+                        <label for="name">Your name</label>
+                        <input id="name" name="name" type="text" placeholder="Enter your name" required>
+                    </div>
+                    <div class="form-field">
+                        <label for="email">Email address</label>
+                        <input id="email" name="email" type="email" placeholder="you@example.com" required>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="subject">Subject</label>
+                    <input id="subject" name="subject" type="text" placeholder="What can we help with?" required>
+                </div>
+
+                <div class="form-field">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" rows="5" placeholder="Tell us a little more..." required></textarea>
+                </div>
+
+                <button type="submit">Send Message <span aria-hidden="true">→</span></button>
+                <p class="form-status" id="contactStatus" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const contactForm = document.getElementById("contactForm");
+        const contactStatus = document.getElementById("contactStatus");
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const savedMessages = JSON.parse(localStorage.getItem("contactMessages") || "[]");
+                const messages = Array.isArray(savedMessages) ? savedMessages : [];
+
+                messages.unshift({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                    name: formData.get("name").trim(),
+                    email: formData.get("email").trim(),
+                    subject: formData.get("subject").trim(),
+                    message: formData.get("message").trim(),
+                    createdAt: new Date().toISOString()
+                });
+
+                localStorage.setItem("contactMessages", JSON.stringify(messages));
+                contactForm.reset();
+                contactStatus.textContent = "Your message has been added to the Cclass inbox.";
+            } catch (error) {
+                contactStatus.textContent = "This browser couldn't save your message. Please try again.";
+            }
+        });
+    </script>
+    <script src="../script.js"></script>
+
+</body>
+</html>

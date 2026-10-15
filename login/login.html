@@ -3,44 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Student Login - Cclass</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
-
 <body>
 
     <div class="login-container">
 
         <div class="login-box">
-            <h1>Welcome Back</h1>
-            <p>Login to continue learning</p>
 
-            <form>
-                <label>Email</label>
-                <input type="email" placeholder="Enter your email">
+            <div class="logo">
+                Cclass
+            </div>
+
+            <h1>Welcome Back</h1>
+            <p class="subtitle">Login to continue learning.</p>
+
+            <form id="loginForm">
+
+                <label>Username</label>
+                <input type="text" id="username" placeholder="Enter your username" required>
 
                 <label>Password</label>
-                <input type="password" placeholder="Enter your password">
+                <input type="password" id="password" placeholder="Enter your password" required>
 
-                <div class="options">
-                    <label>
-                        <input type="checkbox">
-                        Remember me
-                    </label>
+                <button type="submit" href="../student dasboard/index.html">Login</button>
 
-                    <a href="#">Forgot Password?</a>
-                </div>
-
-                <button type="submit">Login</button>
             </form>
 
-            <p class="signup">
+            <p class="signup-text">
                 Don't have an account?
-                <a href="../signup/signup.html">Sign Up</a>
+                <a href="../signup/signup.html">Create Account</a>
             </p>
+
         </div>
 
     </div>
+
+    <script>
+        document.getElementById("loginForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let username = document.getElementById("username").value;
+            let password = document.getElementById("password").value;
+
+            let students = JSON.parse(localStorage.getItem("students")) || [];
+            let savedUsername = localStorage.getItem("username");
+            let savedPassword = localStorage.getItem("password");
+            let studentExists = students.some(function(student) {
+                return student.username === username && student.password === password;
+            });
+
+            if (studentExists || (username === savedUsername && password === savedPassword)) {
+
+                localStorage.setItem("loggedIn", "true");
+                localStorage.setItem("username", username);
+
+                const dashboardUrl = "../student%20dasboard/index.html";
+                const dashboardTab = window.open(dashboardUrl, "_blank");
+
+                if (dashboardTab) {
+                    dashboardTab.opener = null;
+                } else {
+                    window.location.href = dashboardUrl;
+                }
+
+            } else {
+                alert("Incorrect username or password");
+            }
+        });
+    </script>
 
 </body>
 </html>

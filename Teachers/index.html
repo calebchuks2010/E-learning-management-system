@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teacher Dashboard - Cclass</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">Cclass</div>
+        <div class="nav-right">
+            <div class="notification-center">
+                <button class="notification-toggle" id="notificationToggle" type="button" aria-label="Open notifications" aria-expanded="false" aria-controls="notificationPanel">
+                    <span aria-hidden="true">🔔</span>
+                    <span class="notification-badge" id="notificationBadge" hidden></span>
+                </button>
+
+                <section class="notification-panel" id="notificationPanel" aria-label="Notifications" hidden>
+                    <div class="notification-panel-heading">
+                        <div>
+                            <h2>Notifications</h2>
+                            <p>Student replies and updates</p>
+                        </div>
+                        <button class="mark-notifications-read" id="markNotificationsRead" type="button">Mark all read</button>
+                    </div>
+                    <div class="notification-items" id="notificationItems" aria-live="polite"></div>
+                </section>
+            </div>
+
+            <div class="profile">
+                <div class="profile-circle" id="profileLetter"></div>
+                <span id="profileUsername"></span>
+            </div>
+
+            <button class="dashboard-menu-toggle" type="button" aria-label="Open dashboard navigation" aria-expanded="false" aria-controls="teacherSidebar">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <div class="dashboard">
+        <aside class="sidebar" id="teacherSidebar">
+            <nav>
+                <a href="#dashboard" class="active">Dashboard</a>
+                <a href="#my-courses">My Courses</a>
+                <a href="#create-course">Create Course</a>
+                <a href="../courses%20page/index.html">Explore Courses</a>
+                <a href="#students">My Students</a>
+                <a href="#communications">Messages</a>
+                <a href="#announcements">Announcements</a>
+                <a href="#resources">Teaching Resources</a>
+                <a href="#logout" id="logout">Logout</a>
+            </nav>
+        </aside>
+
+        <main class="main-content" id="dashboard">
+            <section class="welcome">
+                <div>
+                    <p class="small-text">TEACHER DASHBOARD</p>
+                    <h1>Good day, <span id="teacherName"></span> </h1>
+                    <p>Welcome back! Manage your courses and support your students from here.</p>
+                </div>
+            </section>
+
+            <section class="stats" aria-label="Teaching statistics">
+                <div class="stat-card">
+                    <div class="stat-icon">📚</div>
+                    <div><h2 id="courseCount">0</h2><p>Courses Created</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👨‍🎓</div>
+                    <div><h2 id="studentCount">0</h2><p>My Students</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📝</div>
+                    <div><h2>0</h2><p>Lessons</p></div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📈</div>
+                    <div><h2>0%</h2><p>Learning Progress</p></div>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="my-courses">
+                <div class="section-heading">
+                    <div>
+                        <h2>My Courses</h2>
+                        <p>Your teaching courses will appear here.</p>
+                    </div>
+                </div>
+                <div class="teacher-course-list" id="teacherCourseList"></div>
+            </section>
+
+            <section class="dashboard-section" id="create-course">
+                <div class="section-heading">
+                    <div>
+                        <h2>Create a Course</h2>
+                        <p>Submit your course for Admin approval before it appears in the catalog.</p>
+                    </div>
+                </div>
+
+                <form class="message-panel course-request-form" id="courseRequestForm">
+                    <div class="message-field">
+                        <label for="courseTitle">Course title</label>
+                        <input id="courseTitle" name="title" type="text" maxlength="90" placeholder="e.g. Intro to Web Design" required>
+                    </div>
+                    <div class="message-field">
+                        <label for="courseCategory">Category</label>
+                        <select id="courseCategory" name="category" required>
+                            <option value="">Choose a category</option>
+                            <option value="Programming">Programming</option>
+                            <option value="Design">Design</option>
+                            <option value="Business">Business</option>
+                            <option value="Marketing">Marketing</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    <div class="message-field">
+                        <label for="courseDescription">Course description</label>
+                        <textarea id="courseDescription" name="description" maxlength="1000" rows="4" placeholder="What will students learn?" required></textarea>
+                    </div>
+                    <div class="message-field">
+                        <label for="courseLessons">Number of lessons</label>
+                        <input id="courseLessons" name="lessons" type="number" min="1" max="500" value="10" required>
+                    </div>
+                    <button type="submit">Submit for Approval</button>
+                    <p class="message-status" id="courseRequestStatus" role="status" aria-live="polite"></p>
+                </form>
+            </section>
+
+            <section class="dashboard-section" id="students">
+                <div class="section-heading">
+                    <div>
+                        <h2>My Students</h2>
+                        <p>Student enrollment information will appear here.</p>
+                    </div>
+                </div>
+                <div class="empty-course">
+                    <div class="empty-icon">👨‍🎓</div>
+                    <h2>No students yet</h2>
+                    <p>Students enrolled in your courses will be listed here.</p>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="communications">
+                <div class="section-heading">
+                    <div>
+                        <h2>Student Messages</h2>
+                        <p>Choose a student to read the conversation or send a message.</p>
+                    </div>
+                </div>
+
+                <div class="message-panel">
+                    <div class="message-field message-teacher-select">
+                        <label for="studentSelect">Student</label>
+                        <select id="studentSelect" required></select>
+                    </div>
+
+                    <div class="message-list" id="teacherMessages" aria-live="polite"></div>
+
+                    <form class="message-compose" id="teacherMessageForm">
+                        <div class="message-field">
+                            <label for="teacherMessageInput">Message</label>
+                            <textarea id="teacherMessageInput" maxlength="1000" rows="3" placeholder="Write a message..." required></textarea>
+                        </div>
+                        <button type="submit">Send Message</button>
+                    </form>
+                    <p class="message-status" id="teacherMessageStatus" role="status" aria-live="polite"></p>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="announcements">
+                <div class="section-heading">
+                    <div>
+                        <h2>Announcements</h2>
+                        <p>Send a course update or notice to all students.</p>
+                    </div>
+                </div>
+
+                <div class="message-panel">
+                    <form class="announcement-compose" id="announcementForm">
+                        <div class="message-field">
+                            <label for="announcementTitle">Announcement title</label>
+                            <input id="announcementTitle" type="text" maxlength="100" placeholder="e.g. New course materials" required>
+                        </div>
+                        <div class="message-field">
+                            <label for="announcementBody">Announcement</label>
+                            <textarea id="announcementBody" maxlength="1000" rows="4" placeholder="Share an update with your students..." required></textarea>
+                        </div>
+                        <button type="submit">Send to All Students</button>
+                    </form>
+                    <p class="message-status" id="announcementStatus" role="status" aria-live="polite"></p>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="resources">
+                <div class="section-heading">
+                    <div>
+                        <h2>Teaching Resources</h2>
+                        <p>Helpful links for planning your teaching.</p>
+                    </div>
+                </div>
+                <div class="course-grid">
+                    <article class="course-card">
+                        <div class="course-image programming">Course Planning</div>
+                        <div class="course-content">
+                            <h3>Build a learning path</h3>
+                            <p>Organize lessons into clear steps that help students progress.</p>
+                            <a href="../courses%20page/index.html">Browse Courses</a>
+                        </div>
+                    </article>
+                    <article class="course-card">
+                        <div class="course-image javascript">Student Support</div>
+                        <div class="course-content">
+                            <h3>Stay connected</h3>
+                            <p>Visit the Contact page for Cclass student support information.</p>
+                            <a href="../Contact/index.html">Contact Support</a>
+                        </div>
+                    </article>
+                    <article class="course-card">
+                        <div class="course-image design">Cclass</div>
+                        <div class="course-content">
+                            <h3>Learning resources</h3>
+                            <p>Explore the available courses and learning materials.</p>
+                            <a href="../courses%20page/index.html">Explore Courses</a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <dialog class="logout-dialog" id="logoutDialog" aria-labelledby="logoutTitle" aria-describedby="logoutDescription">
+        <div class="logout-dialog-icon" aria-hidden="true">↗</div>
+        <h2 id="logoutTitle">Log out?</h2>
+        <p id="logoutDescription">Are you sure you want to log out of your account?</p>
+        <div class="logout-dialog-actions">
+            <button type="button" class="logout-cancel" id="cancelLogout">Stay signed in</button>
+            <button type="button" class="logout-confirm" id="confirmLogout">Log Out</button>
+        </div>
+    </dialog>
+
+    <script>
+        const teacherLoggedIn = localStorage.getItem("teacherLoggedIn");
+        const teacherUsername = localStorage.getItem("teacherUsername");
+
+        if (teacherLoggedIn !== "true" || !teacherUsername) {
+            window.location.href = "./login.html";
+        } else {
+            document.getElementById("teacherName").textContent = teacherUsername;
+            document.getElementById("profileUsername").textContent = teacherUsername;
+            document.getElementById("profileLetter").textContent = teacherUsername.charAt(0).toUpperCase();
+
+            document.getElementById("studentCount").textContent = "0";
+
+            function readStoredArray(key) {
+                try {
+                    const value = JSON.parse(localStorage.getItem(key) || "[]");
+                    return Array.isArray(value) ? value : [];
+                } catch (error) {
+                    return [];
+                }
+            }
+
+            function addDashboardNotification(notification) {
+                const notifications = readStoredArray("dashboardNotifications");
+                notifications.push({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                    createdAt: new Date().toISOString(),
+                    read: false,
+                    ...notification
+                });
+                localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+            }
+
+            const teacherCourseList = document.getElementById("teacherCourseList");
+            const courseRequestForm = document.getElementById("courseRequestForm");
+            const courseRequestStatus = document.getElementById("courseRequestStatus");
+
+            function renderTeacherCourses() {
+                const requests = readStoredArray("courseRequests").filter(function(request) {
+                    return request.teacherUsername === teacherUsername;
+                }).sort(function(first, second) {
+                    return new Date(second.requestedAt) - new Date(first.requestedAt);
+                });
+
+                teacherCourseList.replaceChildren();
+                document.getElementById("courseCount").textContent = requests.filter(function(request) {
+                    return request.status === "approved";
+                }).length;
+
+                if (requests.length === 0) {
+                    const emptyState = document.createElement("div");
+                    emptyState.className = "empty-course";
+                    const title = document.createElement("h2");
+                    title.textContent = "No course submissions yet";
+                    const description = document.createElement("p");
+                    description.textContent = "Create a course and submit it for Admin approval.";
+                    emptyState.append(title, description);
+                    teacherCourseList.appendChild(emptyState);
+                    return;
+                }
+
+                requests.forEach(function(request) {
+                    const card = document.createElement("article");
+                    card.className = "teacher-course-item";
+
+                    const heading = document.createElement("div");
+                    heading.className = "teacher-course-heading";
+
+                    const title = document.createElement("h3");
+                    title.textContent = request.title;
+
+                    const status = document.createElement("span");
+                    status.className = `course-status course-status-${request.status}`;
+                    status.textContent = request.status.charAt(0).toUpperCase() + request.status.slice(1);
+                    heading.append(title, status);
+
+                    const detail = document.createElement("p");
+                    detail.className = "teacher-course-detail";
+                    detail.textContent = `${request.category} · ${request.lessons} lessons`;
+
+                    const description = document.createElement("p");
+                    description.className = "teacher-course-description";
+                    description.textContent = request.description;
+
+                    card.append(heading, detail, description);
+                    teacherCourseList.appendChild(card);
+                });
+            }
+
+            courseRequestForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                const requests = readStoredArray("courseRequests");
+                requests.unshift({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                    title: document.getElementById("courseTitle").value.trim(),
+                    category: document.getElementById("courseCategory").value,
+                    description: document.getElementById("courseDescription").value.trim(),
+                    lessons: Number(document.getElementById("courseLessons").value),
+                    teacherUsername: teacherUsername,
+                    status: "pending",
+                    requestedAt: new Date().toISOString()
+                });
+
+                localStorage.setItem("courseRequests", JSON.stringify(requests));
+                courseRequestForm.reset();
+                courseRequestStatus.textContent = "Course submitted. It will appear in the catalog after Admin approval.";
+                renderTeacherCourses();
+            });
+
+            const studentSelect = document.getElementById("studentSelect");
+            const teacherMessages = document.getElementById("teacherMessages");
+            const teacherMessageForm = document.getElementById("teacherMessageForm");
+            const teacherMessageInput = document.getElementById("teacherMessageInput");
+            const teacherMessageStatus = document.getElementById("teacherMessageStatus");
+            const notificationToggle = document.getElementById("notificationToggle");
+            const notificationPanel = document.getElementById("notificationPanel");
+            const notificationBadge = document.getElementById("notificationBadge");
+            const notificationItems = document.getElementById("notificationItems");
+            const announcementForm = document.getElementById("announcementForm");
+            const announcementTitle = document.getElementById("announcementTitle");
+            const announcementBody = document.getElementById("announcementBody");
+            const announcementStatus = document.getElementById("announcementStatus");
+            const students = readStoredArray("students").filter(function(student) {
+                return student && student.username;
+            });
+
+            const placeholderOption = document.createElement("option");
+            placeholderOption.value = "";
+            placeholderOption.textContent = students.length ? "Choose a student" : "No student accounts yet";
+            studentSelect.appendChild(placeholderOption);
+
+            students.forEach(function(student) {
+                const option = document.createElement("option");
+                option.value = student.username;
+                option.textContent = student.username;
+                studentSelect.appendChild(option);
+            });
+
+            const existingTeacherMessages = readStoredArray("dashboardMessages").filter(function(message) {
+                return message.teacherUsername === teacherUsername;
+            });
+            const latestMessage = existingTeacherMessages[existingTeacherMessages.length - 1];
+            const initialStudent = latestMessage ? latestMessage.studentUsername : (students[0] && students[0].username);
+
+            if (initialStudent) {
+                studentSelect.value = initialStudent;
+            }
+
+            function renderTeacherMessages() {
+                const messages = readStoredArray("dashboardMessages").filter(function(message) {
+                    return message.teacherUsername === teacherUsername && message.studentUsername === studentSelect.value;
+                });
+
+                teacherMessages.replaceChildren();
+
+                if (!studentSelect.value) {
+                    const emptyState = document.createElement("p");
+                    emptyState.className = "message-empty";
+                    emptyState.textContent = "Create a student account to start a conversation.";
+                    teacherMessages.appendChild(emptyState);
+                    return;
+                }
+
+                if (messages.length === 0) {
+                    const emptyState = document.createElement("p");
+                    emptyState.className = "message-empty";
+                    emptyState.textContent = "No messages in this conversation yet.";
+                    teacherMessages.appendChild(emptyState);
+                    return;
+                }
+
+                messages.forEach(function(message) {
+                    const bubble = document.createElement("article");
+                    bubble.className = message.senderRole === "teacher" ? "message-bubble message-sent" : "message-bubble";
+
+                    const meta = document.createElement("p");
+                    meta.className = "message-meta";
+                    meta.textContent = `${message.senderUsername} · ${new Date(message.createdAt).toLocaleString()}`;
+
+                    const content = document.createElement("p");
+                    content.className = "message-content";
+                    content.textContent = message.content;
+
+                    bubble.append(meta, content);
+                    teacherMessages.appendChild(bubble);
+                });
+
+                teacherMessages.scrollTop = teacherMessages.scrollHeight;
+            }
+
+            function getTeacherNotifications() {
+                return readStoredArray("dashboardNotifications").filter(function(notification) {
+                    return notification.recipientRole === "teacher" && notification.recipientUsername === teacherUsername;
+                });
+            }
+
+            function renderNotifications() {
+                const notifications = getTeacherNotifications().sort(function(first, second) {
+                    return new Date(second.createdAt) - new Date(first.createdAt);
+                });
+                const unreadCount = notifications.filter(function(notification) {
+                    return !notification.read;
+                }).length;
+
+                notificationBadge.hidden = unreadCount === 0;
+                notificationBadge.textContent = unreadCount > 9 ? "9+" : String(unreadCount);
+                notificationToggle.setAttribute("aria-label", unreadCount ? `Open notifications, ${unreadCount} unread` : "Open notifications");
+                notificationItems.replaceChildren();
+
+                if (notifications.length === 0) {
+                    const emptyState = document.createElement("p");
+                    emptyState.className = "notification-empty";
+                    emptyState.textContent = "You’re all caught up. New student replies will appear here.";
+                    notificationItems.appendChild(emptyState);
+                    return;
+                }
+
+                notifications.forEach(function(notification) {
+                    const item = document.createElement("button");
+                    item.type = "button";
+                    item.className = notification.read ? "notification-item" : "notification-item notification-unread";
+                    item.dataset.notificationId = notification.id;
+                    item.dataset.notificationKind = notification.kind;
+                    item.dataset.actorUsername = notification.actorUsername || "";
+
+                    const title = document.createElement("span");
+                    title.className = "notification-title";
+                    title.textContent = notification.title;
+
+                    const body = document.createElement("span");
+                    body.className = "notification-body";
+                    body.textContent = notification.body;
+
+                    const time = document.createElement("time");
+                    time.className = "notification-time";
+                    time.dateTime = notification.createdAt;
+                    time.textContent = new Date(notification.createdAt).toLocaleString();
+
+                    item.append(title, body, time);
+                    notificationItems.appendChild(item);
+                });
+            }
+
+            notificationToggle.addEventListener("click", function() {
+                const isOpen = notificationToggle.getAttribute("aria-expanded") === "true";
+                notificationToggle.setAttribute("aria-expanded", String(!isOpen));
+                notificationPanel.hidden = isOpen;
+            });
+
+            document.getElementById("markNotificationsRead").addEventListener("click", function() {
+                const notifications = readStoredArray("dashboardNotifications").map(function(notification) {
+                    if (notification.recipientRole === "teacher" && notification.recipientUsername === teacherUsername) {
+                        return { ...notification, read: true };
+                    }
+                    return notification;
+                });
+
+                localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+                renderNotifications();
+            });
+
+            notificationItems.addEventListener("click", function(event) {
+                const item = event.target.closest(".notification-item");
+
+                if (!item) {
+                    return;
+                }
+
+                const notifications = readStoredArray("dashboardNotifications").map(function(notification) {
+                    return notification.id === item.dataset.notificationId ? { ...notification, read: true } : notification;
+                });
+
+                localStorage.setItem("dashboardNotifications", JSON.stringify(notifications));
+                renderNotifications();
+                notificationPanel.hidden = true;
+                notificationToggle.setAttribute("aria-expanded", "false");
+
+                if (item.dataset.notificationKind === "message" && item.dataset.actorUsername) {
+                    studentSelect.value = item.dataset.actorUsername;
+                    renderTeacherMessages();
+                    document.getElementById("communications").scrollIntoView({ behavior: "smooth" });
+                } else if (item.dataset.notificationKind === "course-status") {
+                    document.getElementById("my-courses").scrollIntoView({ behavior: "smooth" });
+                }
+            });
+
+            document.addEventListener("click", function(event) {
+                if (!event.target.closest(".notification-center")) {
+                    notificationPanel.hidden = true;
+                    notificationToggle.setAttribute("aria-expanded", "false");
+                }
+            });
+
+            studentSelect.addEventListener("change", renderTeacherMessages);
+
+            teacherMessageForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                if (!studentSelect.value) {
+                    teacherMessageStatus.textContent = "Choose a student before sending a message.";
+                    return;
+                }
+
+                const content = teacherMessageInput.value.trim();
+
+                if (!content) {
+                    return;
+                }
+
+                const messages = readStoredArray("dashboardMessages");
+                const createdAt = new Date().toISOString();
+                messages.push({
+                    id: `${Date.now()}-${Math.random().toString(36).slice(2)}`,
+                    teacherUsername: teacherUsername,
+                    studentUsername: studentSelect.value,
+                    senderRole: "teacher",
+                    senderUsername: teacherUsername,
+                    content: content,
+                    createdAt: createdAt
+                });
+
+                localStorage.setItem("dashboardMessages", JSON.stringify(messages));
+                addDashboardNotification({
+                    recipientRole: "student",
+                    recipientUsername: studentSelect.value,
+                    kind: "message",
+                    actorUsername: teacherUsername,
+                    title: `New message from ${teacherUsername}`,
+                    body: content,
+                    createdAt: createdAt
+                });
+                teacherMessageInput.value = "";
+                teacherMessageStatus.textContent = "Message sent.";
+                renderTeacherMessages();
+            });
+
+            announcementForm.addEventListener("submit", function(event) {
+                event.preventDefault();
+
+                if (students.length === 0) {
+                    announcementStatus.textContent = "There are no student accounts to notify yet.";
+                    return;
+                }
+
+                const title = announcementTitle.value.trim();
+                const body = announcementBody.value.trim();
+
+                if (!title || !body) {
+                    return;
+                }
+
+                students.forEach(function(student) {
+                    addDashboardNotification({
+                        recipientRole: "student",
+                        recipientUsername: student.username,
+                        kind: "announcement",
+                        actorUsername: teacherUsername,
+                        title: title,
+                        body: body
+                    });
+                });
+
+                announcementForm.reset();
+                announcementStatus.textContent = `Announcement sent to ${students.length} ${students.length === 1 ? "student" : "students"}.`;
+            });
+
+            window.addEventListener("storage", function(event) {
+                if (event.key === "courseRequests") {
+                    renderTeacherCourses();
+                }
+
+                if (event.key === "dashboardMessages") {
+                    renderTeacherMessages();
+                }
+
+                if (event.key === "dashboardNotifications") {
+                    renderNotifications();
+                }
+            });
+
+            renderTeacherCourses();
+            renderTeacherMessages();
+            renderNotifications();
+
+            const logoutDialog = document.getElementById("logoutDialog");
+
+            document.getElementById("logout").addEventListener("click", function(event) {
+                event.preventDefault();
+                logoutDialog.showModal();
+            });
+
+            document.getElementById("cancelLogout").addEventListener("click", function() {
+                logoutDialog.close();
+            });
+
+            document.getElementById("confirmLogout").addEventListener("click", function() {
+                localStorage.removeItem("teacherLoggedIn");
+                localStorage.removeItem("teacherUsername");
+                window.location.href = "./login.html";
+            });
+        }
+    </script>
+    <script src="../script.js"></script>
+
+</body>
+</html>

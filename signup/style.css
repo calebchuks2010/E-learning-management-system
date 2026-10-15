@@ -2,69 +2,78 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
-    background: #f5f3ff;
-    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    color: #1e293b;
 }
 
 .signup-container {
-    min-height: calc(100vh - 80px);
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 30px;
+    padding: 20px;
 }
 
 .signup-box {
     background: white;
-    width: 400px;
+    width: 100%;
+    max-width: 450px;
     padding: 40px;
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
 }
 
-.signup-box h1 {
+.logo {
     text-align: center;
-    color: #222;
+    font-size: 30px;
+    font-weight: bold;
+    color: #2563eb;
+    margin-bottom: 25px;
+}
+
+h1 {
+    text-align: center;
     margin-bottom: 10px;
 }
 
-.signup-box > p {
+.subtitle {
     text-align: center;
-    color: #777;
+    color: #64748b;
     margin-bottom: 30px;
 }
 
-form label {
-    display: block;
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
     margin-bottom: 8px;
-    color: #333;
     font-weight: bold;
 }
 
-form input {
-    width: 100%;
+input {
     padding: 14px;
     margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    outline: none;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
     font-size: 15px;
+    outline: none;
 }
 
-form input:focus {
-    border-color: #6c3ce9;
+input:focus {
+    border-color: #2563eb;
 }
 
 button {
-    width: 100%;
     padding: 14px;
     border: none;
-    border-radius: 10px;
-    background: #6c3ce9;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #2563eb, #7c3aed);
     color: white;
     font-size: 16px;
     font-weight: bold;
@@ -72,15 +81,17 @@ button {
 }
 
 button:hover {
-    background: #5428c7;
+    opacity: 0.9;
 }
 
 .login-text {
+    text-align: center;
     margin-top: 25px;
+    color: #64748b;
 }
 
 .login-text a {
-    color: #6c3ce9;
+    color: #2563eb;
     text-decoration: none;
     font-weight: bold;
 }

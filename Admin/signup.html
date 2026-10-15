@@ -1,0 +1,108 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Create Account - Cclass</title>
+    <link rel="stylesheet" href="./signup.css">
+</head>
+<body>
+
+    <div class="signup-container">
+
+        <div class="signup-box">
+
+            <div class="logo">
+                Cclass
+            </div>
+
+            <div class="admin-badge">
+                ADMIN
+            </div>
+
+            <h1>Create Admin Account</h1>
+
+            <p class="subtitle">
+                Create your administrator account to manage Cclass.
+            </p>
+
+            <form id="adminSignupForm">
+
+                <label>Admin Username</label>
+                <input
+                    type="text"
+                    id="adminUsername"
+                    placeholder="Enter your username"
+                    required
+                >
+
+                <label>Email</label>
+                <input
+                    type="email"
+                    id="adminEmail"
+                    placeholder="Enter your email"
+                    required
+                >
+
+                <label>Password</label>
+                <input
+                    type="password"
+                    id="adminPassword"
+                    placeholder="Create a password"
+                    required
+                >
+
+                <label>Confirm Password</label>
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password"
+                    required
+                >
+
+                <button type="submit">
+                    Create Admin Account
+                </button>
+
+            </form>
+
+            <p class="login-text">
+                Already have an admin account?
+                <a href="./login.html">Login</a>
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        document.getElementById("adminSignupForm").addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let username = document.getElementById("adminUsername").value;
+            let email = document.getElementById("adminEmail").value;
+            let password = document.getElementById("adminPassword").value;
+            let confirmPassword = document.getElementById("confirmPassword").value;
+
+            if (password !== confirmPassword) {
+                alert("Passwords do not match");
+                return;
+            }
+
+            localStorage.setItem("adminUsername", username);
+            localStorage.setItem("adminEmail", email);
+            localStorage.setItem("adminPassword", password);
+
+            alert("Admin account created successfully!");
+
+            window.location.href = "login.html";
+
+        });
+
+    </script>
+
+</body>
+</html> -->

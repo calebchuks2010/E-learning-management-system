@@ -83,6 +83,30 @@ body {
     gap: 12px;
 }
 
+.nav-toggle {
+    width: 44px;
+    height: 44px;
+    flex: 0 0 44px;
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    padding: 0;
+    border: 1px solid #dbe4f0;
+    border-radius: 12px;
+    background: white;
+    cursor: pointer;
+}
+
+.nav-toggle span {
+    width: 19px;
+    height: 2px;
+    border-radius: 2px;
+    background: #1e293b;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+}
+
 button {
     padding: 13px 22px;
     border-radius: 20px;
@@ -138,11 +162,14 @@ button {
     gap: 15px;
 }
 
-.hero-buttons button {
+.hero-buttons button,
+.hero-buttons a {
+    display: inline-block;
     padding: 15px 25px;
     border-radius: 25px;
     font-size: 16px;
     cursor: pointer;
+    text-decoration: none;
 }
 
 .explore {
@@ -341,7 +368,9 @@ button {
     color: #f59e0b;
 }
 
-.course-content button {
+.course-content button,
+.course-content .course-start {
+    display: block;
     width: 100%;
     padding: 13px;
     border: none;
@@ -350,6 +379,8 @@ button {
     font-size: 15px;
     cursor: pointer;
     background: linear-gradient(90deg, #2563eb, #7c3aed);
+    text-align: center;
+    text-decoration: none;
 }
 
 .view-courses {
@@ -357,7 +388,8 @@ button {
     margin-top: 40px;
 }
 
-.view-courses button {
+.view-courses .view-all-courses {
+    display: inline-block;
     padding: 14px 30px;
     border-radius: 25px;
     border: 2px solid #2563eb;
@@ -365,9 +397,10 @@ button {
     color: #2563eb;
     font-size: 16px;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.view-courses button:hover {
+.view-courses .view-all-courses:hover {
     color: white;
     background-color: #2563eb;
 }
@@ -454,6 +487,7 @@ button {
 }
 
 .start-learning {
+    display: inline-block;
     margin-top: 15px;
     padding: 15px 28px;
     border: none;
@@ -462,6 +496,7 @@ button {
     font-size: 16px;
     cursor: pointer;
     background: linear-gradient(90deg, #2563eb, #7c3aed);
+    text-decoration: none;
 }
 
 .testimonials {
@@ -544,7 +579,9 @@ button {
     margin-bottom: 30px;
 }
 
-.cta-content button {
+.cta-content button,
+.cta-content a {
+    display: inline-block;
     padding: 15px 30px;
     border: none;
     border-radius: 25px;
@@ -553,9 +590,11 @@ button {
     font-size: 16px;
     font-weight: bold;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.cta-content button:hover {
+.cta-content button:hover,
+.cta-content a:hover {
     transform: translateY(-2px);
 }
 
@@ -578,7 +617,7 @@ footer {
 .footer-brand h2 {
     font-size: 30px;
     background: linear-gradient(90deg, #2563eb, #7c3aed);
-    -webkit-background-clip: text;
+    /* -webkit-background-clip: text; */
     -webkit-text-fill-color: transparent;
     margin-bottom: 15px;
 }
@@ -638,14 +677,52 @@ footer {
 
 @media (max-width: 900px) {
 
+    .hero {
+        min-height: auto;
+        gap: 28px;
+        padding: 40px;
+    }
+
+    .hero-text {
+        width: 55%;
+    }
+
+    .hero-text h1 {
+        font-size: 48px;
+    }
+
+    .hero-image {
+        width: 45%;
+        height: auto;
+    }
+
+    .hero-image img {
+        width: 100%;
+        max-width: 330px;
+        height: auto;
+    }
+
+    .features,
+    .course-container,
+    .testimonial-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .student-section {
         flex-direction: column;
+        min-height: auto;
         padding: 40px;
+        gap: 40px;
     }
 
     .student-image,
     .student-content {
         width: 100%;
+    }
+
+    .student-image img {
+        max-width: 400px;
+        height: auto;
     }
 
     .footer-container {
@@ -654,14 +731,254 @@ footer {
 
 }
 
+@media (max-width: 760px) {
+
+    .navbar {
+        position: relative;
+        z-index: 100;
+        width: 92%;
+        height: auto;
+        min-height: 75px;
+        padding: 10px 14px;
+        gap: 12px;
+    }
+
+    .navbar .links {
+        position: absolute;
+        top: calc(100% + 8px);
+        right: 0;
+        left: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 2px;
+        padding: 10px;
+        border: 1px solid #e2e8f0;
+        border-radius: 14px;
+        background: white;
+        box-shadow: 0 12px 28px rgba(15, 23, 42, 0.14);
+    }
+
+    .navbar.menu-open .links {
+        display: flex;
+    }
+
+    .navbar .links a {
+        padding: 12px 14px;
+    }
+
+    .navbar .buttons {
+        margin-left: auto;
+    }
+
+    .nav-toggle {
+        display: flex;
+    }
+
+    .navbar.menu-open .nav-toggle span:first-child {
+        transform: translateY(7px) rotate(45deg);
+    }
+
+    .navbar.menu-open .nav-toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .navbar.menu-open .nav-toggle span:last-child {
+        transform: translateY(-7px) rotate(-45deg);
+    }
+
+    .hero {
+        width: 92%;
+        min-height: auto;
+        flex-direction: column;
+        gap: 28px;
+        margin: 24px auto;
+        padding: 36px 24px;
+        border-radius: 24px;
+        text-align: center;
+    }
+
+    .hero-text {
+        width: 100%;
+    }
+
+    .hero-text h1 {
+        font-size: 42px;
+    }
+
+    .hero-text p {
+        margin-right: auto;
+        margin-left: auto;
+        font-size: 18px;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .hero-image {
+        width: 100%;
+        height: auto;
+    }
+
+    .hero-image img {
+        width: min(100%, 320px);
+        height: auto;
+    }
+
+}
+
 @media (max-width: 600px) {
 
-    .student-section {
+    .logo img {
+        width: 42px;
+        height: 42px;
+    }
+
+    .logo h2 {
+        font-size: 23px;
+    }
+
+    .navbar .buttons .getstarted {
+        padding: 10px 12px;
+        border-radius: 16px;
+        font-size: 14px;
+    }
+
+    .hero {
         padding: 30px 20px;
+        border-radius: 20px;
+    }
+
+    .hero-text h1 {
+        font-size: 35px;
+    }
+
+    .hero-text p {
+        font-size: 16px;
+    }
+
+    .hero-buttons button,
+    .hero-buttons a {
+        padding: 13px 18px;
+        font-size: 15px;
+    }
+
+    .why-cclass,
+    .popular-courses,
+    .testimonials {
+        width: 92%;
+        margin: 55px auto;
+        padding: 20px 0;
+    }
+
+    .section-title {
+        margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+        font-size: 30px;
+    }
+
+    .section-title p {
+        font-size: 15px;
+        line-height: 1.6;
+    }
+
+    .features,
+    .course-container,
+    .testimonial-container {
+        grid-template-columns: 1fr;
+        gap: 18px;
+    }
+
+    .feature-card {
+        padding: 28px 22px;
+    }
+
+    .course-image {
+        height: 165px;
+    }
+
+    .course-content {
+        padding: 20px;
+    }
+
+    .course-content h3 {
+        font-size: 20px;
+    }
+
+    .student-section {
+        width: 92%;
+        margin: 60px auto;
+        padding: 26px 20px;
+        gap: 28px;
+        border-radius: 22px;
+    }
+
+    .student-image img {
+        border-radius: 18px;
     }
 
     .student-content h2 {
-        font-size: 35px;
+        font-size: 32px;
+    }
+
+    .student-intro {
+        font-size: 16px;
+    }
+
+    .student-benefit {
+        gap: 12px;
+    }
+
+    .benefit-icon {
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+    }
+
+    .start-learning {
+        width: 100%;
+        text-align: center;
+    }
+
+    .testimonial-card {
+        padding: 24px;
+    }
+
+    .cta {
+        width: 92%;
+        margin: 60px auto;
+        padding: 45px 20px;
+        border-radius: 22px;
+    }
+
+    .cta-content h2 {
+        font-size: 30px;
+    }
+
+    .cta-content p {
+        font-size: 16px;
+        line-height: 1.6;
+    }
+
+    .cta-content a {
+        padding: 12px 24px;
+    }
+
+    footer {
+        padding: 50px 6% 20px;
+    }
+
+    .footer-container {
+        gap: 28px;
+        padding-bottom: 32px;
+    }
+
+    .student-section {
+        padding: 30px 20px;
     }
 
     .footer-container {
