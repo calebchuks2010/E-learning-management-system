@@ -83,6 +83,10 @@
                     Messages
                 </a>
 
+                <a href="#video-classes">
+                    Video Classes
+                </a>
+
                 <a href="#logout" id="logout">
                     Logout
                 </a>
@@ -206,6 +210,27 @@
                         <button type="submit">Send Reply</button>
                     </form>
                     <p class="message-status" id="studentMessageStatus" role="status" aria-live="polite"></p>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="video-classes">
+                <div class="section-heading">
+                    <div>
+                        <h2>Video Classes</h2>
+                        <p>Join a class your teacher has shared, or enter the room code they gave you.</p>
+                    </div>
+                </div>
+
+                <div class="video-call-panel">
+                    <form class="video-call-join-form" id="studentVideoCallForm">
+                        <div class="message-field">
+                            <label for="videoCallRoomCode">Room code</label>
+                            <input id="videoCallRoomCode" type="text" maxlength="120" autocomplete="off" placeholder="Enter your teacher's room code" required>
+                        </div>
+                        <button type="submit">Join video class</button>
+                    </form>
+                    <p class="message-status" id="studentVideoCallStatus" role="status" aria-live="polite"></p>
+                    <div class="video-call-list" id="studentVideoCallList" aria-live="polite"></div>
                 </div>
             </section>
 
@@ -631,6 +656,7 @@
         }
     </script>
     <script src="../script.js"></script>
+    <script src="../video-calls.js"></script>
 
 </body>
 </html>

@@ -52,6 +52,7 @@
                 <a href="../courses%20page/index.html">Explore Courses</a>
                 <a href="#students">My Students</a>
                 <a href="#communications">Messages</a>
+                <a href="#video-classes">Video Classes</a>
                 <a href="#announcements">Announcements</a>
                 <a href="#resources">Teaching Resources</a>
                 <a href="#logout" id="logout">Logout</a>
@@ -171,6 +172,31 @@
                         <button type="submit">Send Message</button>
                     </form>
                     <p class="message-status" id="teacherMessageStatus" role="status" aria-live="polite"></p>
+                </div>
+            </section>
+
+            <section class="dashboard-section" id="video-classes">
+                <div class="section-heading">
+                    <div>
+                        <h2>Video Classes</h2>
+                        <p>Start a live lesson or schedule a video class for your students.</p>
+                    </div>
+                </div>
+
+                <div class="video-call-panel">
+                    <form class="video-call-form" id="teacherVideoCallForm">
+                        <div class="message-field">
+                            <label for="videoCallTitle">Class title</label>
+                            <input id="videoCallTitle" type="text" maxlength="90" placeholder="e.g. Weekly revision" required>
+                        </div>
+                        <div class="message-field">
+                            <label for="videoCallTime">Schedule for (optional)</label>
+                            <input id="videoCallTime" type="datetime-local">
+                        </div>
+                        <button type="submit">Create video class</button>
+                    </form>
+                    <p class="message-status" id="teacherVideoCallStatus" role="status" aria-live="polite"></p>
+                    <div class="video-call-list" id="teacherVideoCallList" aria-live="polite"></div>
                 </div>
             </section>
 
@@ -649,6 +675,7 @@
         }
     </script>
     <script src="../script.js"></script>
+    <script src="../video-calls.js"></script>
 
 </body>
 </html>
